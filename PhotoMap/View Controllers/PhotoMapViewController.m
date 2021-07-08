@@ -103,32 +103,27 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
      MKAnnotationView *annotationView = (MKAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"Pin"];
-//     if (annotationView == nil) {
-//         annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
-//         annotationView.canShowCallout = true;
-//         annotationView.leftCalloutAccessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 50.0, 50.0)];
-//     }
-//
-//     UIImageView *imageView = (UIImageView*)annotationView.leftCalloutAccessoryView;
-//     imageView.image = [UIImage imageNamed:@"camera-icon"];
-//
-//     return annotationView;
     
     if (annotationView == nil) {
-     annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
-     annotationView.canShowCallout = true;
-     annotationView.leftCalloutAccessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 50.0, 50.0)];
-     annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-     }
+        //Makes a pin
+          annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
+        //Allows for the pop-up
+          annotationView.canShowCallout = true;
+        //Creates the imageview
+          annotationView.leftCalloutAccessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 50.0, 50.0)];
+          annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+          }
 
-     UIImageView *imageView = (UIImageView*)annotationView.leftCalloutAccessoryView;
-     // imageView.image = [UIImage imageNamed:@"camera-icon"]; // remove this line
+          UIImageView *imageView = (UIImageView*)annotationView.leftCalloutAccessoryView;
+   // UIButton *button = (UIButton *) annotationView.rightCalloutAccessoryView;
+//           imageView.image = [UIImage imageNamed:@"camera-icon"]; // remove this line
 
-     // add these two lines below
-     PhotoAnnotation *photoAnnotationItem = annotation; // refer to this generic annotation as our more specific PhotoAnnotation
-     imageView.image = photoAnnotationItem.photo; // set the image into the callout imageview
-        annotationView.image = photoAnnotationItem.photo;
-     return annotationView;
+          // add these two lines below
+          PhotoAnnotation *photoAnnotationItem = annotation; // refer to this generic annotation as our more specific PhotoAnnotation
+          imageView.image = photoAnnotationItem.photo; // set the image into the callout imageview
+
+          return annotationView;
+
  }
 
 @end
